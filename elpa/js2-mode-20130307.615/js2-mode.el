@@ -7,7 +7,7 @@
 ;;         Dmitry Gutov <dgutov@yandex.ru>
 ;; URL:  https://github.com/mooz/js2-mode/
 ;;       http://code.google.com/p/js2-mode/
-;; Version: 20130228
+;; Version: 20130307
 ;; Keywords: languages, javascript
 ;; Package-Requires: ((emacs "24.1"))
 
@@ -9594,7 +9594,7 @@ to a multiline declaration statement.  See `js2-pretty-multiline-declarations'."
                         (or (eq (char-before) ?,)
                             (and (not (eq (char-before) ?\;))
                                  (and
-                                  (prog2 (skip-chars-backward "[[:punct:]]")
+                                  (prog2 (skip-syntax-backward ".")
                                       (looking-at js2-indent-operator-re)
                                     (js2-backward-sws))
                                   (not (eq (char-before) ?\;))))
@@ -11235,59 +11235,6 @@ it marks the next defun after the ones already marked."
          (beg (js2-node-abs-pos fn)))
     (unless (js2-ast-root-p fn)
       (narrow-to-region beg (+ beg (js2-node-len fn))))))
-
-;;;; ChangeLog:
-
-;; 2013-02-28  Dmitry Gutov  <dgutov@yandex.ru>
-;; 
-;; 	js2-mode: Merge from upstream
-;; 
-;; 2013-02-19  Dmitry Gutov  <dgutov@yandex.ru>
-;; 
-;; 	js2-mode: Use \\' instead of $
-;; 
-;; 2013-02-19  Dmitry Gutov  <dgutov@yandex.ru>
-;; 
-;; 	Merge from upstream
-;; 
-;; 2013-02-17  Dmitry Gutov  <dgutov@yandex.ru>
-;; 
-;; 	Merge from upstream
-;; 
-;; 2012-12-26  Dmitry Gutov  <dgutov@yandex.ru>
-;; 
-;; 	* js2-mode: same for Returns -> Return
-;; 
-;; 2012-12-26  Dmitry Gutov  <dgutov@yandex.ru>
-;; 
-;; 	Re-apply the Toggles -> Toggle wording change
-;; 
-;; 2012-12-25  Dmitry Gutov  <dgutov@yandex.ru>
-;; 
-;; 	* js2-mode: merge from upstream
-;; 	
-;; 	Lots of small changes, too many to enumerate.
-;; 
-;; 2012-10-31  Stefan Monnier  <monnier@iro.umontreal.ca>
-;; 
-;; 	* admin/update-archive.sh: Keep old packages.
-;; 
-;; 2011-07-01  Chong Yidong  <cyd@stupidchicken.com>
-;; 
-;; 	Reorganize repository layout, allowing site installation.
-;; 	
-;; 	A Makefile with "site", "archive" and "archive-full" rules can now be
-;; 	used for site-installation, partial archive deployment, and full
-;; 	archive deployment respectively.
-;; 	
-;; 	Rewrite the admin/archive-contents.el script to handle these changes.
-;; 
-;; 2011-07-01  Chong Yidong  <cyd@stupidchicken.com>
-;; 
-;; 	Give every package its own directory in packages/
-;; 	including single-file packages.
-;; 
-
 
 (provide 'js2-mode)
 
